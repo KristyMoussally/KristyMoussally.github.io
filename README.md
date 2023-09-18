@@ -9,3 +9,5 @@ Inspiration : **Alice in Wonderland** et **Dreamcore**
 Pallette de couleurs : varie dépendament des images (les couleurs washed en lien avec les images choisis)
 
 ## Diagramme 
+
+![image png du diagramme]()
