@@ -6,6 +6,6 @@ Genre : Surréal
 
 Inspiration : **Alice in Wonderland** et **Dreamcore**
 
-Pallette de couleurs : varie par-rapport aux images (les couleurs washed)
+Pallette de couleurs : varie dépendament des images (les couleurs washed en lien avec les images choisis)
 
 ## Diagramme 
