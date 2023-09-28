@@ -10,4 +10,4 @@ Pallette de couleurs : varie dépendament des images (les couleurs washed en lie
 
 ## Diagramme 
 
-![image png du diagramme]()
+![image png du diagramme](https://github.com/KristyMoussally/vous-etes-le-heros-wonderland/blob/main/assets/shema.drawio%20copy.png?raw=true)
