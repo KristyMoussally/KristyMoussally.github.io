@@ -27,7 +27,7 @@ const chapters = {
       },
       {
         titre: "➤ Aller vers la forêt",
-        destination: "forêt",
+        destination: "foret",
       },
     ],
   },
@@ -53,7 +53,7 @@ const chapters = {
     buttons: [
       {
         titre: "➤ Se tourner et attaquer la créature",
-        destination: "créature",
+        destination: "creature",
       },
       {
         titre: "➤ S'enfuir vers la porte noire",
@@ -85,7 +85,7 @@ const chapters = {
       },
       {
         titre: "➤ Boire le thé suspésieux",
-        destination: "thé",
+        destination: "the",
       },
     ],
   },
@@ -93,7 +93,7 @@ const chapters = {
     titre: "Une poison utile ",
     description:
       "En buvant le thé, vous sentez un peu étourdi. Ceci cause une voix qui donne transmet un code. Celui-ci devra être important, prenez note.",
-    image: "/assets/images/the.webp",
+    image: "/assets/images/the.jpg",
 
     buttons: [
       {
@@ -125,7 +125,7 @@ const chapters = {
     buttons: [
       {
         titre: "➤ Partir tout de suite",
-        destination: "Tapez goToChapter(`sortie`)",
+        destination: "sortie",
       },
       {
         titre: "➤ Explorer encore la maison",
@@ -150,15 +150,15 @@ const chapters = {
     titre: "Dernier? Qui a dit que c'était le dernier",
     description:
       "Vous décidez de réexplorer la maison pour bien être sûr que vous n'avez pas oublié quelque chose. Cette action intelligente vous permet de resevoir une montre dont les aiguilles ne marche pas. Par chance, vous savez que cette montre est la clé de la sortie. Vous devez mettre la bonne heure.",
-    image: "/assets/images/montre.jpg",
+    image: "/assets/images/montre.webp",
 
     buttons: [{ titre: "➤ Mettre le code", destination: "fin" }],
   },
   fin: {
-    titre: "Fou! J'étais fou une fois...",
+    titre: "Fou? J'étais fou une fois...",
     description:
       "Vous ouvrez vos yeux, le plafond comme le plancher. Les murs sont identiques...Vous sentez une vague de folie revenir.",
-    image: "/asset/images/hopital.jpg",
+    image: "assets/images/hopital.jpg",
 
     buttons: [
       {
@@ -189,56 +189,71 @@ const text = document.querySelector("p");
 const contenueImage = document.querySelector(".petitimg");
 const buttons = document.querySelector(".boutons");
 
-title.innerHTML = chapters.accueil.titre
-text.innerHTML = chapters.accueil.description
-contenueImage.innerHTML = chapters.accueil.image;
-
-
 function goToChapter(key) {
+  let twist = false; // pour le twist (à réparer)
   if ((chapitre = chapters[key])) {
-    console.log(chapitre.titre)
+    console.log(chapitre.titre);
     console.log(chapitre.description);
+    console.log(chapitre.image);
     title.innerHTML = chapitre.titre;
-    text.innerHTML = chapitre.description
-    contenueImage.innerHTML = chapitre.image;
+    text.innerHTML = chapitre.description;
+    contenueImage.src = chapitre.image;
     for (let i = 0; i < chapitre.buttons.length; i++) {
       console.log(chapitre.buttons[i]);
     }
-    if (chapitre == chapters.the) {
-      // nombre hasard de 4 chiffres number Réponse
-
+    // Création du code à 4 chiffres
+    const numberRep1 = Math.round(Math.random() * 9);
+    const numberRep2 = Math.round(Math.random() * 9);
+    const numberRep3 = Math.round(Math.random() * 9);
+    const numberRep4 = Math.round(Math.random() * 9);
+    const textCode = document.createTextNode(
+      `${numberRep1}${numberRep2}${numberRep3}${numberRep4}`
+    );
+    if (chapitre === chapters.the) {
+      // Le code vue au joueuer
       const p = document.createElement("p"); // créé une nouvelle balise paragraphe "p"
-      const numberRep1 = Math.round(Math.random() * 9);
-      const numberRep2 = Math.round(Math.random() * 9);
-      const numberRep3 = Math.round(Math.random() * 9);
-      const numberRep4 = Math.round(Math.random() * 9);
-      const textCode = document.createTextNode(
-        numberRep1 + "" + numberRep2 + "" + numberRep3 + "" + numberRep4
-      );
       p.appendChild(textCode);
       contenueJeu.appendChild(p);
     }
     if (chapitre === chapters.maison) {
-      const msgNumber = document.createElement("input");
+      twist = true; // pour le twist (à réparer)
+      while (buttons.firstChild) {
+        buttons.removeChild(buttons.firstChild); // Chapitre exception enlève aussi autre élément (input + code)
+      }
+
+      for (let i = 0; i < chapitre.buttons.length; i++) {
+        const newBtn = document.createElement("button");
+        newBtn.textContent = chapitre.buttons[i].titre;
+        newBtn.addEventListener("click", () => {
+          goToChapter(chapitre.buttons[i].destinationin);
+        });
+        buttons.appendChild(newBtn);
+      }
+      const msgNumber = document.createElement("input"); // ajoute un input
       buttons.appendChild(msgNumber);
+
+      if (buttons.msgNumber.value === textCode) {
+        goToChapter(chapitre.fin.destination);
+      }
+      if (chapitre === chapters.fin && chapters.mauvaiscode) {
+        buttons.removeChild(textCode);
+      }
     }
-  }  else {
-    console.log("Ce chapitre n'existe pas.");
   }
+
   while (buttons.firstChild) {
     buttons.removeChild(buttons.firstChild); // Enlève les boutons (éléments enfants de la classe)
   }
-  for (let i = 0; i < chapitre.buttons.length; i++) { 
-    const newBtn = document.createElement('button'); 
-      newBtn.textContent = chapitre.buttons[i].titre; 
-      newBtn.addEventListener('click', () => { 
-        goToChapter(chapitre.buttons[i].destination) 
-      }); 
-      buttons.appendChild(newBtn); 
-    }; 
-
+  for (let i = 0; i < chapitre.buttons.length; i++) {
+    // Réparer pour les pages à 1 button
+    const newBtn = document.createElement("button");
+    newBtn.textContent = chapitre.buttons[i].titre;
+    newBtn.addEventListener("click", () => {
+      goToChapter(chapitre.buttons[i].destination);
+    });
+    buttons.appendChild(newBtn);
+  }
 }
-
 console.log(chapters.accueil.titre);
 console.log(chapters.accueil.description);
 
@@ -247,62 +262,4 @@ for (let bouton of chapters.accueil.buttons) {
   console.log(bouton.destination);
 }
 
-
-/*
-for (let i = 0; i < chapters.buttons; i++) {
-  const newBtn = document.createElement("button"); //Création du bouton balise   // ---> problème
-  newBtn.textContent = chapters.buttons[i].titre;
-  newBtn.addEventListener("click", () => {
-    chapitre = chapters[key];
-    goToChapter(chapters.buttons[i].destination);
-    let twist = false;
-    title.innerHTML = chapters[i].titre;
-    text.innerHTML = chapters[i].description;
-    // À simplifier le code
-    if (chapters.maison === true) {
-      twist = true;
-    }
-
-    // Recevoir le code en allant vers chapitre "the"
-
-    if (chapters.the === true) {
-      // nombre hasard de 4 chiffres number Réponse
-
-      const p = document.createElement("p"); // créé une nouvelle balise paragraphe "p"
-      const numberRep1 = Math.round(Math.random() * 9);
-      const numberRep2 = Math.round(Math.random() * 9);
-      const numberRep3 = Math.round(Math.random() * 9);
-      const numberRep4 = Math.round(Math.random() * 9);
-      const textCode = document.createTextNode(
-        numberRep1 + "" + numberRep2 + "" + numberRep3 + "" + numberRep4
-      );
-      p.appendChild(textCode);
-      contenueJeu.appendChild(p);
-    }
-
-    // Entrer le code dans le input
-
-
-  boutons.appendChild(newBtn);
-}
-
-// À revoir dans le i
-const newBtn = document.createElement("button"); //Création du bouton balise ---> problème
-newBtn.textContent = "Test"
-newBtn.classList.add("buttons");
-boutons.appendChild(newBtn);
-
-/* Aide du Wiki référence
-
-while (buttons.firstChild) { 
-  buttons.removeChild(buttons.firstChild); 
-} 
-for (let i = 0; i < chapitre.buttons.length; i++) { 
-const newBtn = document.createElement('button'); 
-  newBtn.textContent = chapitre.buttons[i].titre; 
-  newBtn.addEventListener('click', () => { 
-    goToChapter(chapitre.buttons[i].destination) 
-  }); 
-  buttons.appendChild(newBtn); 
-}; 
-*/
+goToChapter("accueil"); // quand on ouvre la page --> montre directement la page d'accueil (pas besoin d'écrire goToChapter("accueil") dans
