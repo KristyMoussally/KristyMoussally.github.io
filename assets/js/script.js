@@ -152,7 +152,9 @@ const chapters = {
       "Vous décidez de réexplorer la maison pour bien être sûr que vous n'avez pas oublié quelque chose. Cette action intelligente vous permet de resevoir une montre dont les aiguilles ne marche pas. Par chance, vous savez que cette montre est la clé de la sortie. Vous devez mettre la bonne heure.",
     image: "/assets/images/montre.webp",
 
-    buttons: [{ titre: "➤ Mettre le code", destination: "fin" }],
+    buttons: [
+      { titre: "➤ Mettre le code", destination: "fin" || "mauvaiscode" }, // à revoir
+    ],
   },
   fin: {
     titre: "Fou? J'étais fou une fois...",
@@ -190,7 +192,6 @@ const contenueImage = document.querySelector(".petitimg");
 const buttons = document.querySelector(".boutons");
 
 function goToChapter(key) {
-  let twist = false; // pour le twist (à réparer)
   if ((chapitre = chapters[key])) {
     console.log(chapitre.titre);
     console.log(chapitre.description);
@@ -216,9 +217,8 @@ function goToChapter(key) {
       contenueJeu.appendChild(p);
     }
     if (chapitre === chapters.maison) {
-      twist = true; // pour le twist (à réparer)
       while (buttons.firstChild) {
-        buttons.removeChild(buttons.firstChild); // Chapitre exception enlève aussi autre élément (input + code)
+        buttons.removeChild(buttons.firstChild); // Chapitre exception
       }
 
       for (let i = 0; i < chapitre.buttons.length; i++) {
@@ -232,11 +232,14 @@ function goToChapter(key) {
       const msgNumber = document.createElement("input"); // ajoute un input
       buttons.appendChild(msgNumber);
 
+      // Code à réparer
       if (buttons.msgNumber.value === textCode) {
-        goToChapter(chapitre.fin.destination);
+        newBtn.addEventListener("click", function () {
+          goToChapter(chapitre.fin.destination);
+        });
       }
-      if (chapitre === chapters.fin && chapters.mauvaiscode) {
-        buttons.removeChild(textCode);
+      if (key === "fin" || "mauvaiscode") {
+        contenueJeu.removeChild(textCode);
       }
     }
   }
@@ -245,7 +248,6 @@ function goToChapter(key) {
     buttons.removeChild(buttons.firstChild); // Enlève les boutons (éléments enfants de la classe)
   }
   for (let i = 0; i < chapitre.buttons.length; i++) {
-    // Réparer pour les pages à 1 button
     const newBtn = document.createElement("button");
     newBtn.textContent = chapitre.buttons[i].titre;
     newBtn.addEventListener("click", () => {
@@ -254,12 +256,5 @@ function goToChapter(key) {
     buttons.appendChild(newBtn);
   }
 }
-console.log(chapters.accueil.titre);
-console.log(chapters.accueil.description);
 
-for (let bouton of chapters.accueil.buttons) {
-  console.log(bouton.titre);
-  console.log(bouton.destination);
-}
-
-goToChapter("accueil"); // quand on ouvre la page --> montre directement la page d'accueil (pas besoin d'écrire goToChapter("accueil") dans
+goToChapter("accueil"); // quand on ouvre la page --> montre directement la page d'accueil (pas besoin d'écrire goToChapter("accueil") dans la console
