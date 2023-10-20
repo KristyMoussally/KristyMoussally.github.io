@@ -152,9 +152,7 @@ const chapters = {
       "Vous décidez de réexplorer la maison pour bien être sûr que vous n'avez pas oublié quelque chose. Cette action intelligente vous permet de resevoir une montre dont les aiguilles ne marche pas. Par chance, vous savez que cette montre est la clé de la sortie. Vous devez mettre la bonne heure.",
     image: "/assets/images/montre.webp",
 
-    buttons: [
-      { titre: "➤ Mettre le code", destination: "fin" || "mauvaiscode" }, // à revoir
-    ],
+    buttons: [{ titre: "➤ Mettre le code", destination: "mauvaiscode" }],
   },
   fin: {
     titre: "Fou? J'étais fou une fois...",
@@ -208,12 +206,13 @@ function goToChapter(key) {
     const numberRep3 = Math.round(Math.random() * 9);
     const numberRep4 = Math.round(Math.random() * 9);
     const textCode = document.createTextNode(
-      `${numberRep1}${numberRep2}${numberRep3}${numberRep4}`
+      numberRep1 + "" + numberRep2 + "" + numberRep3 + "" + numberRep4
     );
+
+    const p = document.createElement("p"); // créé une nouvelle balise paragraphe "p"
+    p.appendChild(textCode);
     if (chapitre === chapters.the) {
       // Le code vue au joueuer
-      const p = document.createElement("p"); // créé une nouvelle balise paragraphe "p"
-      p.appendChild(textCode);
       contenueJeu.appendChild(p);
     }
     if (chapitre === chapters.maison) {
@@ -222,25 +221,23 @@ function goToChapter(key) {
       }
 
       for (let i = 0; i < chapitre.buttons.length; i++) {
+        const msgNumber = document.createElement("input"); // ajoute un input
+        msgNumber.setAttribute("id", "msgNumberEcrit");
+        msgNumber.setAttribute("type", "text");
+        buttons.appendChild(msgNumber);
         const newBtn = document.createElement("button");
         newBtn.textContent = chapitre.buttons[i].titre;
         newBtn.addEventListener("click", () => {
-          goToChapter(chapitre.buttons[i].destinationin);
+          if (msgNumber.value === textCode) {
+            goToChapter(chapters.fin);
+          } else {
+            goToChapter(chapitre.buttons[i].destination);
+          }
         });
         buttons.appendChild(newBtn);
       }
-      const msgNumber = document.createElement("input"); // ajoute un input
-      buttons.appendChild(msgNumber);
 
-      // Code à réparer
-      if (buttons.msgNumber.value === textCode) {
-        newBtn.addEventListener("click", function () {
-          goToChapter(chapitre.fin.destination);
-        });
-      }
-      if (key === "fin" || "mauvaiscode") {
-        contenueJeu.removeChild(textCode);
-      }
+      //alert(msgNumber);
     }
   }
 
@@ -257,4 +254,4 @@ function goToChapter(key) {
   }
 }
 
-goToChapter("accueil"); // quand on ouvre la page --> montre directement la page d'accueil (pas besoin d'écrire goToChapter("accueil") dans la console
+goToChapter("accueil"); //quand on ouvre la page -> montre directement la page d'accueil
