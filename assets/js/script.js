@@ -152,14 +152,13 @@ const chapters = {
       "Vous décidez de réexplorer la maison pour bien être sûr que vous n'avez pas oublié quelque chose. Cette action intelligente vous permet de resevoir une montre dont les aiguilles ne marche pas. Par chance, vous savez que cette montre est la clé de la sortie. Vous devez mettre la bonne heure.",
     image: "/assets/images/montre.webp",
 
-    buttons: [{ titre: "➤ Mettre le code", destination: "mauvaiscode" }],
+    buttons: [{ titre: "➤ Mettre le code", destination: "Twist" }], // Ce chapitre n'a pas réellement une destination, car c'est un chapitre unique (twist) [Change manuellement dans la fonction]
   },
   fin: {
     titre: "Fou? J'étais fou une fois...",
     description:
       "Vous ouvrez vos yeux, le plafond comme le plancher. Les murs sont identiques...Vous sentez une vague de folie revenir.",
     image: "assets/images/hopital.jpg",
-
     buttons: [
       {
         titre: "➤ Retour vers le début",
@@ -181,7 +180,7 @@ const chapters = {
   },
 };
 
-// Ps3
+// Ps3 (Réparer + Expliquer par le prof)
 
 const contenueJeu = document.querySelector("#jeu");
 const title = document.querySelector("h1");
@@ -189,69 +188,68 @@ const text = document.querySelector("p");
 const contenueImage = document.querySelector(".petitimg");
 const buttons = document.querySelector(".boutons");
 
+// Création du code à 4 chiffres
+const numberRep1 = Math.round(Math.random() * 9);
+const numberRep2 = Math.round(Math.random() * 9);
+const numberRep3 = Math.round(Math.random() * 9);
+const numberRep4 = Math.round(Math.random() * 9);
+const code = numberRep1 + "" + numberRep2 + "" + numberRep3 + "" + numberRep4;
+const textCode = document.createTextNode(code);
+
 function goToChapter(key) {
-  if ((chapitre = chapters[key])) {
-    console.log(chapitre.titre);
-    console.log(chapitre.description);
-    console.log(chapitre.image);
-    title.innerHTML = chapitre.titre;
-    text.innerHTML = chapitre.description;
-    contenueImage.src = chapitre.image;
-    for (let i = 0; i < chapitre.buttons.length; i++) {
-      console.log(chapitre.buttons[i]);
-    }
-    // Création du code à 4 chiffres
-    const numberRep1 = Math.round(Math.random() * 9);
-    const numberRep2 = Math.round(Math.random() * 9);
-    const numberRep3 = Math.round(Math.random() * 9);
-    const numberRep4 = Math.round(Math.random() * 9);
-    const textCode = document.createTextNode(
-      numberRep1 + "" + numberRep2 + "" + numberRep3 + "" + numberRep4
-    );
+  let chapitre = chapters[key];
 
-    const p = document.createElement("p"); // créé une nouvelle balise paragraphe "p"
-    p.appendChild(textCode);
-    if (chapitre === chapters.the) {
-      // Le code vue au joueuer
-      contenueJeu.appendChild(p);
-    }
-    if (chapitre === chapters.maison) {
-      while (buttons.firstChild) {
-        buttons.removeChild(buttons.firstChild); // Chapitre exception
-      }
+  console.log(chapitre.titre);
+  console.log(chapitre.description);
+  console.log(chapitre.image);
 
-      for (let i = 0; i < chapitre.buttons.length; i++) {
-        const msgNumber = document.createElement("input"); // ajoute un input
-        msgNumber.setAttribute("id", "msgNumberEcrit");
-        msgNumber.setAttribute("type", "text");
-        buttons.appendChild(msgNumber);
-        const newBtn = document.createElement("button");
-        newBtn.textContent = chapitre.buttons[i].titre;
-        newBtn.addEventListener("click", () => {
-          if (msgNumber.value === textCode) {
-            goToChapter(chapters.fin);
-          } else {
-            goToChapter(chapitre.buttons[i].destination);
-          }
-        });
-        buttons.appendChild(newBtn);
-      }
+  title.innerHTML = chapitre.titre;
+  text.innerHTML = chapitre.description;
+  contenueImage.src = chapitre.image;
 
-      //alert(msgNumber);
-    }
+  // créé une nouvelle balise paragraphe "p"
+  const p = document.createElement("p");
+  p.appendChild(textCode);
+
+  if (chapitre === chapters.the) {
+    // Le code vue au joueuer seulement dans ce chapitre
+    contenueJeu.appendChild(p);
   }
 
-  while (buttons.firstChild) {
-    buttons.removeChild(buttons.firstChild); // Enlève les boutons (éléments enfants de la classe)
-  }
+  // Enlève tous les boutons = met en vide
+  buttons.innerHTML = "";
+
   for (let i = 0; i < chapitre.buttons.length; i++) {
-    const newBtn = document.createElement("button");
-    newBtn.textContent = chapitre.buttons[i].titre;
-    newBtn.addEventListener("click", () => {
-      goToChapter(chapitre.buttons[i].destination);
-    });
-    buttons.appendChild(newBtn);
+    console.log(chapitre.buttons[i]);
+
+    if (chapitre === chapters.maison) {
+      // ajoute un input pour inscrire le code
+      const msgNumber = document.createElement("input");
+      // Donner un name à l'input pour l'appeler après
+      msgNumber.setAttribute("name", "msgNumberEcrit");
+      buttons.appendChild(msgNumber);
+
+      const newBtn = document.createElement("button");
+      newBtn.textContent = chapitre.buttons[i].titre;
+      newBtn.addEventListener("click", () => {
+        // Quand c'est un ElementsByName, c'est un array (Ne pas oublier l'exemple de body) [à voir dans les notes de cours]
+        let value = document.getElementsByName("msgNumberEcrit")[0].value;
+        if (value === code) {
+          goToChapter("fin");
+        } else {
+          goToChapter("mauvaiscode");
+        }
+      });
+      buttons.appendChild(newBtn);
+    } else {
+      const newBtn = document.createElement("button");
+      newBtn.textContent = chapitre.buttons[i].titre;
+      newBtn.addEventListener("click", () => {
+        goToChapter(chapitre.buttons[i].destination);
+      });
+      buttons.appendChild(newBtn);
+    }
   }
 }
-
-goToChapter("accueil"); //quand on ouvre la page -> montre directement la page d'accueil
+//quand on ouvre la page -> montre directement la page d'accueil
+goToChapter("accueil");
