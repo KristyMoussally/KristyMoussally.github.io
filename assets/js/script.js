@@ -7,6 +7,7 @@ const chapters = {
     description:
       "Vous vous réveillez dans un monde surréel. La sensation d'être dans ce rêve lucide vous rend mal à l'aise. Votre but est de sortir de ce cauchemar.",
     image: "/assets/images/accueil.jpg",
+    video : "lien vers video dans dossier assets", // Premier vidéo --> À mettre
     buttons: [
       {
         titre: "➤ Commencer l'histoire intéractif",
@@ -66,6 +67,7 @@ const chapters = {
     description:
       "Vous vous tournez puis vous préparez à s'élancer. Mais avant de faire cela, vous voyez un trou noir qui avance vers vous. Stupéfait, quand vous reouvrit les yeux pour comprendre ce que vous avez vu, vous vous retrouvez dans l'obscurité total.",
     image: "/assets/images/creature.jpg",
+    video : "lien vers video dans dossier assets", // Deuxième vidéo --> À mettre
     buttons: [
       {
         titre: "➤ Retour vers l'accueil",
@@ -205,7 +207,13 @@ function goToChapter(key) {
 
   title.innerHTML = chapitre.titre;
   text.innerHTML = chapitre.description;
-  contenueImage.src = chapitre.image;
+
+  // Appliquer si video existant (muet + boucle)
+  if (video == true) {
+    contenueImage.src = chapitre.video
+  }else{
+    contenueImage.src = chapitre.image;
+  }
 
   // créé une nouvelle balise paragraphe "p"
   const p = document.createElement("p");
@@ -246,10 +254,12 @@ function goToChapter(key) {
       newBtn.textContent = chapitre.buttons[i].titre;
       newBtn.addEventListener("click", () => {
         goToChapter(chapitre.buttons[i].destination);
+        // Mettre sons .play() qui recommence
       });
       buttons.appendChild(newBtn);
     }
   }
 }
+
 //quand on ouvre la page -> montre directement la page d'accueil
 goToChapter("accueil");
