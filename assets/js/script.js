@@ -7,7 +7,7 @@ const chapters = {
     description:
       "Vous vous réveillez dans un monde surréel. La sensation d'être dans ce rêve lucide vous rend mal à l'aise. Votre but est de sortir de ce cauchemar.",
     image: "/assets/images/accueil.jpg",
-    video : "lien vers video dans dossier assets", // Premier vidéo --> À mettre
+    // video: "lien vers video dans dossier assets", // Premier vidéo --> À mettre
     buttons: [
       {
         titre: "➤ Commencer l'histoire intéractif",
@@ -67,7 +67,7 @@ const chapters = {
     description:
       "Vous vous tournez puis vous préparez à s'élancer. Mais avant de faire cela, vous voyez un trou noir qui avance vers vous. Stupéfait, quand vous reouvrit les yeux pour comprendre ce que vous avez vu, vous vous retrouvez dans l'obscurité total.",
     image: "/assets/images/creature.jpg",
-    video : "lien vers video dans dossier assets", // Deuxième vidéo --> À mettre
+    //video: "lien vers video dans dossier assets", // Deuxième vidéo --> À mettre
     buttons: [
       {
         titre: "➤ Retour vers l'accueil",
@@ -198,6 +198,9 @@ const numberRep4 = Math.round(Math.random() * 9);
 const code = numberRep1 + "" + numberRep2 + "" + numberRep3 + "" + numberRep4;
 const textCode = document.createTextNode(code);
 
+// Appelle au son pour les boutons uniques
+const bruitFleche = new Audio("assets/videos/arrow.mp3");
+
 function goToChapter(key) {
   let chapitre = chapters[key];
 
@@ -208,13 +211,14 @@ function goToChapter(key) {
   title.innerHTML = chapitre.titre;
   text.innerHTML = chapitre.description;
 
+  /*
   // Appliquer si video existant (muet + boucle)
   if (video == true) {
-    contenueImage.src = chapitre.video
-  }else{
+    contenueImage.src = chapitre.video;
+  } else {
     contenueImage.src = chapitre.image;
   }
-
+*/
   // créé une nouvelle balise paragraphe "p"
   const p = document.createElement("p");
   p.appendChild(textCode);
@@ -243,8 +247,11 @@ function goToChapter(key) {
         // Quand c'est un ElementsByName, c'est un array (Ne pas oublier l'exemple de body) [à voir dans les notes de cours]
         let value = document.getElementsByName("msgNumberEcrit")[0].value;
         if (value === code) {
+          // le son joue dans les boutons uniques
+          bruitFleche.play();
           goToChapter("fin");
         } else {
+          bruitFleche.play();
           goToChapter("mauvaiscode");
         }
       });
@@ -254,7 +261,10 @@ function goToChapter(key) {
       newBtn.textContent = chapitre.buttons[i].titre;
       newBtn.addEventListener("click", () => {
         goToChapter(chapitre.buttons[i].destination);
-        // Mettre sons .play() qui recommence
+        // Appelle au son pour les boutons créés
+        const bruitFleche = new Audio("assets/videos/arrow.mp3");
+        // le son joue dans les boutons créés
+        bruitFleche.play();
       });
       buttons.appendChild(newBtn);
     }
