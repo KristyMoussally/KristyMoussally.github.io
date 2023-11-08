@@ -6,8 +6,9 @@ const chapters = {
     titre: "Avant de commencer !",
     description:
       "Vous vous réveillez dans un monde surréel. La sensation d'être dans ce rêve lucide vous rend mal à l'aise. Votre but est de sortir de ce cauchemar.",
+    video: "/assets/video/accueil.mp4", // Premier vidéo
     image: "/assets/images/accueil.jpg",
-    // video: "lien vers video dans dossier assets", // Premier vidéo --> À mettre
+
     buttons: [
       {
         titre: "➤ Commencer l'histoire intéractif",
@@ -66,8 +67,9 @@ const chapters = {
     titre: "Quelle belle imagination vous avez !",
     description:
       "Vous vous tournez puis vous préparez à s'élancer. Mais avant de faire cela, vous voyez un trou noir qui avance vers vous. Stupéfait, quand vous reouvrit les yeux pour comprendre ce que vous avez vu, vous vous retrouvez dans l'obscurité total.",
+    video: "/assets/video/creature.mp4", // Deuxième vidéo --> À mettre
     image: "/assets/images/creature.jpg",
-    //video: "lien vers video dans dossier assets", // Deuxième vidéo --> À mettre
+
     buttons: [
       {
         titre: "➤ Retour vers l'accueil",
@@ -189,6 +191,7 @@ const title = document.querySelector("h1");
 const text = document.querySelector("p");
 const contenueImage = document.querySelector(".petitimg");
 const buttons = document.querySelector(".boutons");
+const divVisuel = document.getElementById("visuel");
 
 // Création du code à 4 chiffres
 const numberRep1 = Math.round(Math.random() * 9);
@@ -199,26 +202,34 @@ const code = numberRep1 + "" + numberRep2 + "" + numberRep3 + "" + numberRep4;
 const textCode = document.createTextNode(code);
 
 // Appelle au son pour les boutons uniques
-const bruitFleche = new Audio("assets/videos/arrow.mp3");
+const bruitFleche = new Audio("assets/video/arrow.mp3");
 
 function goToChapter(key) {
   let chapitre = chapters[key];
 
   console.log(chapitre.titre);
   console.log(chapitre.description);
-  console.log(chapitre.image);
 
   title.innerHTML = chapitre.titre;
   text.innerHTML = chapitre.description;
+  contenueImage.src = chapitre.image;
 
-  /*
+  //  PRoblème aux vidéos
+
   // Appliquer si video existant (muet + boucle)
-  if (video == true) {
-    contenueImage.src = chapitre.video;
+  if (chapitre.video !== false) {
+    const videoContenue = document.createElement("video");
+    videoContenue.src = chapitre.video;
+    videoContenue.classList.add("petitimg");
+    videoContenue.play();
+
+    divVisuel.appendChild(videoContenue);
+    divVisuel.removeChild(contenueImage);
+    console.log(videoContenue);
   } else {
     contenueImage.src = chapitre.image;
   }
-*/
+
   // créé une nouvelle balise paragraphe "p"
   const p = document.createElement("p");
   p.appendChild(textCode);
@@ -262,7 +273,7 @@ function goToChapter(key) {
       newBtn.addEventListener("click", () => {
         goToChapter(chapitre.buttons[i].destination);
         // Appelle au son pour les boutons créés
-        const bruitFleche = new Audio("assets/videos/arrow.mp3");
+        const bruitFleche = new Audio("assets/video/arrow.mp3");
         // le son joue dans les boutons créés
         bruitFleche.play();
       });
