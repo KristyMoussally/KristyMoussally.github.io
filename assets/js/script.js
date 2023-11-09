@@ -212,7 +212,6 @@ function goToChapter(key) {
 
   title.innerHTML = chapitre.titre;
   text.innerHTML = chapitre.description;
-  contenueImage.src = chapitre.image;
 
   //  PRoblème aux vidéos
 
@@ -221,11 +220,16 @@ function goToChapter(key) {
     const videoContenue = document.createElement("video");
     videoContenue.src = chapitre.video;
     videoContenue.classList.add("petitimg");
+    // car je travail sur chrome puis ce navigateur à une function différente sur les vidéos
+    videoContenue.setAttribute("allow", "autoplay");
+
     videoContenue.play();
 
+    videoContenue.setAttribute("loop", "");
+    videoContenue.setAttribute("autoplay", "");
+    console.log(videoContenue);
     divVisuel.appendChild(videoContenue);
     divVisuel.removeChild(contenueImage);
-    console.log(videoContenue);
   } else {
     contenueImage.src = chapitre.image;
   }
