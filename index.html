@@ -4,14 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/98.css" />
     <title>Vous êtes le heros</title>
   </head>
   <body>
     <div class="contenant">
-      <div id="jeu">
+      <div class="title-bar">
         <div class="logo">Welcome to Wonderland</div>
+        <div class="title-bar-controls">
+          <button id="help" aria-label="Help"></button>
+          <button id="x" aria-label="Close"></button>
+        </div>
+      </div>
+      <div id="jeu">
+
         <br />
-        <h1>ipsum dolor</h1>
+        <h2>ipsum dolor</h2>
         <p>
           Lorem ipsum dolor sit amet. Ut praesentium quae id accusantium
           reprehenderit vel nihil quos et aliquid sapiente. Quo quia inventore
@@ -19,7 +27,7 @@
           nobis molestias hic expedita dolorum ex dolor enim.
         </p>
         <div id="visuel">
-          <img src="assets/images/accueil.jpg" alt="photo" class="petitimg" />
+          
         </div>
         <br />
         <div class="boutons">
@@ -29,7 +37,23 @@
         </div>
         <br />
       </div>
+
+
+
     </div>
+
+    <div class="contenantpopup" id="popUpDelete">
+      <div class="title-barpopup">
+        <div class="logopopup">Welcome to Wonderland</div>
+      </div>
+      <br/>
+        <form class="intpopup">
+          <p id="msgQuestion">Bien joué</p>               
+          <button id="goBack">Fermer</button>
+        </form>
+      </div>
+    </div>
+      
     <script src="assets/js/script.js"></script>
   </body>
 </html>
