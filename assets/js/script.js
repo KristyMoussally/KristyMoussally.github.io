@@ -199,11 +199,8 @@ function goToChapter(key) {
 
   title.innerHTML = chapitre.titre;
   text.innerHTML = chapitre.description;
-  divVisuel.innerHTML = '';
+  divVisuel.innerHTML = "";
 
-  //  PRoblème aux vidéos
-
-  // Appliquer si video existant (muet + boucle)
   if (chapitre.video != undefined) {
     const videoContenue = document.createElement("video");
     videoContenue.src = chapitre.video;
@@ -212,15 +209,50 @@ function goToChapter(key) {
     videoContenue.loop = true;
     videoContenue.autoplay = true;
     videoContenue.muted = true;
-  
+
     divVisuel.appendChild(videoContenue);
   } else {
     const imageContenue = document.createElement("img");
-    imageContenue.classList.add("petitimg")
-    //<img src="assets/images/accueil.jpg" alt="photo" class="petitimg" />
+    imageContenue.classList.add("petitimg");
     imageContenue.src = chapitre.image;
     divVisuel.appendChild(imageContenue);
   }
+
+  // Easter Eggs --> doit prendre en compte la progression du joueur
+
+  const btnHelpQuestion = document.getElementById("help");
+  const btnDelete = document.getElementById("x");
+  const btnFermer = document.getElementById("goBack");
+  const popupX = document.getElementById("popUpDelete");
+
+  btnHelpQuestion.addEventListener("click", () => {
+    const notificationSonEffet = new Audio(
+      "assets/video/sound_effet_windows_notification.mp3"
+    );
+    notificationSonEffet.play();
+    let paraMsg = document.getElementById("msgQuestion");
+    paraMsg.textContent = "Tu as seulement besoin de choisir votre choix.";
+    setTimeout(() => {
+      popupX.style.display = "block";
+    }, 500);
+  });
+
+  btnDelete.addEventListener("click", () => {
+    const problemeSonEffet = new Audio(
+      "assets/video/sound_effet_windows_probleme.mp3"
+    );
+    problemeSonEffet.play();
+    setTimeout(() => {
+      popupX.style.display = "block";
+    }, 500);
+
+    // Réparer le blocage du jeu
+    // contenueJeu.setAttribute("blocked", true);
+  });
+
+  btnFermer.addEventListener("click", () => {
+    popupX.style.display = "none";
+  });
 
   // créé une nouvelle balise paragraphe "p"
   const p = document.createElement("p");
@@ -242,7 +274,7 @@ function goToChapter(key) {
       const msgNumber = document.createElement("input");
       // Donner un name à l'input pour l'appeler après
       msgNumber.setAttribute("name", "msgNumberEcrit");
-      msgNumber.classList.add("inputold")
+      msgNumber.classList.add("inputold");
       buttons.appendChild(msgNumber);
 
       const newBtn = document.createElement("button");
@@ -274,30 +306,6 @@ function goToChapter(key) {
     }
   }
 }
-
-
-
-const btnHelpQuestion = document.getElementById("help");
-const btnDelete = document.getElementById("x");
-const btnFermer = document.getElementById("goBack")
-const popupX = document.getElementById("popUpDelete")
-
-btnHelpQuestion.addEventListener("click", () => {
-  let paraMsg = document.getElementById("msgQuestion");
-  paraMsg.textContent = "Tu as seulement besoin de choisir votre choix."
-
-  popupX.style.display = "block"
-})
-
-btnDelete.addEventListener("click", () => {
- // alert("Bonne essaie, mais tu restes coincé ici")
- popupX.style.display = "block"
- chapitre.setAttribute("blocked")
-})
-
-btnFermer.addEventListener("click", ()=> {
-  popupX.style.display = "none"
-})
 
 //quand on ouvre la page -> montre directement la page d'accueil
 goToChapter("accueil");
