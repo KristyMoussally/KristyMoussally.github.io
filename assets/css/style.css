@@ -183,11 +183,20 @@ button:hover {
 }
 
 .intpopup {
-  justify-content: center;
   width: 500px;
   min-height: 90px;
   box-shadow: var(--border-window-outer), var(--border-window-inner);
   background: var(--surface);
   padding: 3px;
   font-size: 15px;
+}
+
+#boutonspop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#btnRestart {
+  display: block;
 }

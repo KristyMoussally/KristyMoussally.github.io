@@ -218,42 +218,6 @@ function goToChapter(key) {
     divVisuel.appendChild(imageContenue);
   }
 
-  // Easter Eggs --> doit prendre en compte la progression du joueur
-
-  const btnHelpQuestion = document.getElementById("help");
-  const btnDelete = document.getElementById("x");
-  const btnFermer = document.getElementById("goBack");
-  const popupX = document.getElementById("popUpDelete");
-
-  btnHelpQuestion.addEventListener("click", () => {
-    const notificationSonEffet = new Audio(
-      "assets/video/sound_effet_windows_notification.mp3"
-    );
-    notificationSonEffet.play();
-    let paraMsg = document.getElementById("msgQuestion");
-    paraMsg.textContent = "Tu as seulement besoin de choisir votre choix.";
-    setTimeout(() => {
-      popupX.style.display = "block";
-    }, 500);
-  });
-
-  btnDelete.addEventListener("click", () => {
-    const problemeSonEffet = new Audio(
-      "assets/video/sound_effet_windows_probleme.mp3"
-    );
-    problemeSonEffet.play();
-    setTimeout(() => {
-      popupX.style.display = "block";
-    }, 500);
-
-    // Réparer le blocage du jeu
-    // contenueJeu.setAttribute("blocked", true);
-  });
-
-  btnFermer.addEventListener("click", () => {
-    popupX.style.display = "none";
-  });
-
   // créé une nouvelle balise paragraphe "p"
   const p = document.createElement("p");
   p.appendChild(textCode);
@@ -261,6 +225,7 @@ function goToChapter(key) {
   if (chapitre === chapters.the) {
     // Le code vue au joueuer seulement dans ce chapitre
     contenueJeu.appendChild(p);
+    localStorage.setItem("Code", JSON.stringify(code));
   }
 
   // Enlève tous les boutons = met en vide
@@ -297,6 +262,7 @@ function goToChapter(key) {
       newBtn.textContent = chapitre.buttons[i].titre;
       newBtn.addEventListener("click", () => {
         goToChapter(chapitre.buttons[i].destination);
+        localStorage.setItem("chapitre", JSON.stringify(chapitre));
         // Appelle au son pour les boutons créés
         const bruitFleche = new Audio("assets/video/arrow.mp3");
         // le son joue dans les boutons créés
@@ -305,7 +271,51 @@ function goToChapter(key) {
       buttons.appendChild(newBtn);
     }
   }
+  localStorage.getItem("chapitre");
+  goToChapter(JSON.parse(chapitre));
 }
 
 //quand on ouvre la page -> montre directement la page d'accueil
 goToChapter("accueil");
+
+/*
+// Easter Eggs --> doit prendre en compte la progression du joueur
+
+const btnHelpQuestion = document.getElementById("help");
+const btnDelete = document.getElementById("x");
+const btnGoBack = document.getElementById("goBack");
+const popupX = document.getElementById("popUpDelete");
+const btnRestart = document.getElementById("btnRestart");
+
+btnHelpQuestion.addEventListener("click", () => {
+  const notificationSonEffet = new Audio(
+    "assets/video/sound_effet_windows_notification.mp3"
+  );
+  notificationSonEffet.play();
+  let paraMsg = document.getElementById("msgQuestion");
+  paraMsg.textContent = "Voulez-vous recommencer le jeu?";
+  setTimeout(() => {
+    popupX.style.display = "block";
+  }, 500);
+});
+
+btnDelete.addEventListener("click", () => {
+  const problemeSonEffet = new Audio(
+    "assets/video/sound_effet_windows_probleme.mp3"
+  );
+  problemeSonEffet.play();
+  setTimeout(() => {
+    popupX.style.display = "block";
+  }, 500);
+  btnRestart.style.display = "none";
+});
+
+btnGoBack.addEventListener("click", () => {
+  popupX.style.display = "none";
+});
+
+btnRestart.addEventListener("click", () => {
+  popupX.style.display = "none";
+  localStorage.clear();
+});
+*/
