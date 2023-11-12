@@ -1,10 +1,10 @@
-/* Changer pour une autre fonte
+/* Changer pour une autre fonte plus cohérente
 @font-face {
   font-family: "Wonderland";
   src: "../fonts/Wonderland.otf" format("opentype");
 }*/
 
-/* À l'aide de 98.css => https://github.com/jdan/98.css/blob/main/style.css */
+/* À l'aide de 98.css => https://github.com/jdan/98.css/tree/main */
 
 @font-face {
   font-family: "Pixelated MS Sans Serif";
@@ -39,7 +39,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-self: center;
   width: 915px;
   border-style: outset;
   border-color: white;
@@ -150,7 +149,7 @@ button:hover {
 
 .contenantpopup {
   display: none;
-  margin-top: 0 auto;
+  margin: 0 auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;

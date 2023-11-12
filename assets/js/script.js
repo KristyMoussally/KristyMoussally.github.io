@@ -172,6 +172,13 @@ const chapters = {
   },
 };
 
+// Music ambiance 
+
+const musiqueAmbiance = new Audio("assets/video/music_ambiance.mp3")
+musiqueAmbiance.play();
+musiqueAmbiance.loop = true;
+musiqueAmbiance.autoplay = true;
+
 // Ps3 (Réparer + Expliquer par le prof)
 
 const contenueJeu = document.querySelector("#jeu");
@@ -190,6 +197,9 @@ const textCode = document.createTextNode(code);
 
 // Appelle au son pour les boutons uniques
 const bruitFleche = new Audio("assets/video/arrow.mp3");
+
+//quand on ouvre la page -> montre directement la page d'accueil
+goToChapter("accueil");
 
 function goToChapter(key) {
   let chapitre = chapters[key];
@@ -271,14 +281,13 @@ function goToChapter(key) {
       buttons.appendChild(newBtn);
     }
   }
-  localStorage.getItem("chapitre");
-  goToChapter(JSON.parse(chapitre));
+
 }
-
-//quand on ouvre la page -> montre directement la page d'accueil
-goToChapter("accueil");
-
 /*
+localStorage.getItem("chapitre");
+goToChapter(JSON.parse(chapitre));
+*/
+
 // Easter Eggs --> doit prendre en compte la progression du joueur
 
 const btnHelpQuestion = document.getElementById("help");
@@ -299,6 +308,7 @@ btnHelpQuestion.addEventListener("click", () => {
   }, 500);
 });
 
+
 btnDelete.addEventListener("click", () => {
   const problemeSonEffet = new Audio(
     "assets/video/sound_effet_windows_probleme.mp3"
@@ -318,4 +328,4 @@ btnRestart.addEventListener("click", () => {
   popupX.style.display = "none";
   localStorage.clear();
 });
-*/
+
