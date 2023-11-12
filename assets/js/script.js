@@ -172,14 +172,55 @@ const chapters = {
   },
 };
 
-// Music ambiance 
+// Ps4.1 Music ambiance en loop
 
-const musiqueAmbiance = new Audio("assets/video/music_ambiance.mp3")
+const musiqueAmbiance = new Audio("assets/video/music_ambiance.mp3");
 musiqueAmbiance.play();
 musiqueAmbiance.loop = true;
 musiqueAmbiance.autoplay = true;
 
-// Ps3 (Réparer + Expliquer par le prof)
+// Easter Egg + bouton de réinstallation Ps4.2
+
+const btnHelpQuestion = document.getElementById("help");
+const btnDelete = document.getElementById("x");
+const btnGoBack = document.getElementById("goBack");
+const popupX = document.getElementById("popUpDelete");
+const btnRestart = document.getElementById("btnRestart");
+
+btnHelpQuestion.addEventListener("click", () => {
+  const notificationSonEffet = new Audio(
+    "assets/video/sound_effet_windows_notification.mp3"
+  );
+  notificationSonEffet.play();
+  let paraMsg = document.getElementById("msgQuestion");
+  paraMsg.textContent = "Voulez-vous recommencer le jeu?";
+  setTimeout(() => {
+    popupX.style.display = "block";
+    btnRestart.style.display = "block";
+  }, 500);
+});
+
+btnRestart.addEventListener("click", () => {
+  popupX.style.display = "none";
+  localStorage.clear();
+});
+
+btnDelete.addEventListener("click", () => {
+  const problemeSonEffet = new Audio(
+    "assets/video/sound_effet_windows_probleme.mp3"
+  );
+  problemeSonEffet.play();
+  setTimeout(() => {
+    popupX.style.display = "block";
+  }, 500);
+  btnRestart.style.display = "none";
+});
+
+btnGoBack.addEventListener("click", () => {
+  popupX.style.display = "none";
+});
+
+// Ps3
 
 const contenueJeu = document.querySelector("#jeu");
 const title = document.querySelector("h2");
@@ -281,51 +322,8 @@ function goToChapter(key) {
       buttons.appendChild(newBtn);
     }
   }
-
 }
-/*
+
+//doit prendre en compte la progression du joueur
 localStorage.getItem("chapitre");
 goToChapter(JSON.parse(chapitre));
-*/
-
-// Easter Eggs --> doit prendre en compte la progression du joueur
-
-const btnHelpQuestion = document.getElementById("help");
-const btnDelete = document.getElementById("x");
-const btnGoBack = document.getElementById("goBack");
-const popupX = document.getElementById("popUpDelete");
-const btnRestart = document.getElementById("btnRestart");
-
-btnHelpQuestion.addEventListener("click", () => {
-  const notificationSonEffet = new Audio(
-    "assets/video/sound_effet_windows_notification.mp3"
-  );
-  notificationSonEffet.play();
-  let paraMsg = document.getElementById("msgQuestion");
-  paraMsg.textContent = "Voulez-vous recommencer le jeu?";
-  setTimeout(() => {
-    popupX.style.display = "block";
-  }, 500);
-});
-
-
-btnDelete.addEventListener("click", () => {
-  const problemeSonEffet = new Audio(
-    "assets/video/sound_effet_windows_probleme.mp3"
-  );
-  problemeSonEffet.play();
-  setTimeout(() => {
-    popupX.style.display = "block";
-  }, 500);
-  btnRestart.style.display = "none";
-});
-
-btnGoBack.addEventListener("click", () => {
-  popupX.style.display = "none";
-});
-
-btnRestart.addEventListener("click", () => {
-  popupX.style.display = "none";
-  localStorage.clear();
-});
-
