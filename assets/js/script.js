@@ -242,12 +242,18 @@ const bruitFleche = new Audio("assets/video/arrow.mp3");
 //quand on ouvre la page -> montre directement la page d'accueil
 goToChapter("accueil");
 
+//doit prendre en compte la progression du joueur
+const progres = localStorage.getItem("chapitre");
+goToChapter(localStorage.getItem("chapitre"))
+console.log(progres);
+
+
 function goToChapter(key) {
   let chapitre = chapters[key];
-
+/*
   console.log(chapitre.titre);
   console.log(chapitre.description);
-
+*/
   title.innerHTML = chapitre.titre;
   text.innerHTML = chapitre.description;
   divVisuel.innerHTML = "";
@@ -323,6 +329,3 @@ function goToChapter(key) {
     }
   }
 }
-//doit prendre en compte la progression du joueur
-const progres = localStorage.getItem("chapitre");
-console.log(progres);
