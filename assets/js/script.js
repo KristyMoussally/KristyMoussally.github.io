@@ -323,7 +323,6 @@ function goToChapter(key) {
     }
   }
 }
-
 //doit prendre en compte la progression du joueur
-localStorage.getItem("chapitre");
-goToChapter(JSON.parse(chapitre));
+const progres = localStorage.getItem("chapitre");
+console.log(progres);
