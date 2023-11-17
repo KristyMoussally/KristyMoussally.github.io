@@ -239,18 +239,9 @@ const textCode = document.createTextNode(code);
 // Appelle au son pour les boutons uniques
 const bruitFleche = new Audio("assets/video/arrow.mp3");
 
-//quand on ouvre la page -> montre directement la page d'accueil
-goToChapter("accueil");
-
-//doit prendre en compte la progression du joueur
-const progres = localStorage.getItem("chapitre");
-goToChapter(localStorage.getItem("chapitre"))
-console.log(progres);
-
-
 function goToChapter(key) {
   let chapitre = chapters[key];
-/*
+  /*
   console.log(chapitre.titre);
   console.log(chapitre.description);
 */
@@ -304,7 +295,10 @@ function goToChapter(key) {
       newBtn.addEventListener("click", () => {
         // Quand c'est un ElementsByName, c'est un array (Ne pas oublier l'exemple de body) [à voir dans les notes de cours]
         let value = document.getElementsByName("msgNumberEcrit")[0].value;
-        if (value === code) {
+
+        // Conserve le code pris durant le jeu (dans le storage)
+        const codeStorage = JSON.parse(localStorage.getItem("Code"));
+        if (value === codeStorage) {
           // le son joue dans les boutons uniques
           bruitFleche.play();
           goToChapter("fin");
@@ -329,3 +323,10 @@ function goToChapter(key) {
     }
   }
 }
+
+//quand on ouvre la page -> montre directement la page d'accueil
+goToChapter("accueil");
+
+//doit prendre en compte la progression du joueur
+const progres = JSON.parse(localStorage.getItem("maison"));
+goToChapter(progres);
