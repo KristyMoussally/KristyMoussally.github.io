@@ -5,7 +5,7 @@ const chapters = {
   accueil: {
     titre: "Avant de commencer !",
     description:
-      "Vous vous réveillez dans un monde surréel. La sensation d'être dans ce rêve lucide vous rend mal à l'aise. Votre but est de sortir de ce cauchemar.",
+      "Vous vous réveilliez dans un monde surréel. La sensation d'être dans ce rêve lucide vous rend mal à l'aise. Votre but est de sortir de ce cauchemar.",
     video: "/assets/video/accueil.mp4",
     buttons: [
       {
@@ -17,7 +17,7 @@ const chapters = {
   debut: {
     titre: "Un rêve pas comme les autres",
     description:
-      "Vous marchez dans un chemin étroit qui vous mène vers un intersection. Un des chemin vous mène vers une forêt remplie des yeux puis l'autre une plaine déserte.",
+      "Vous marchez dans un chemin étroit qui vous mène vers une intersection. Un des chemins vous mène vers une forêt remplie des yeux puis l'autre une plaine déserte.",
     image: "/assets/images/plaine.jpg",
     buttons: [
       {
@@ -31,9 +31,9 @@ const chapters = {
     ],
   },
   foret: {
-    titre: "C'était de la drogue ??",
+    titre: "C'était de la drogue?",
     description:
-      "Plus ce que vous marchez dans la forêt, vous sentez que votre tête tourne en rond. Des hallucinations vous hantents jusqu'à quand vos jambes perd l'équilibre.",
+      "Plus ce que vous marchez dans la forêt, vous sentez que votre tête tourne en rond. Des hallucinations vous hantent jusqu'à quand vos jambes perdent l'équilibre.",
     image: "/assets/images/foret.jpg",
     buttons: [
       {
@@ -43,9 +43,9 @@ const chapters = {
     ],
   },
   plaine: {
-    titre: "Paix, mais pour quelle coût",
+    titre: "Paix, mais pour quel coût",
     description:
-      "Vous continuez votre chemin dans la plaine. Vous sentez que quelque chose vous suit...Vous n'êtes pas touts seuls. Vous remarquez qu'il il y a une sorte de porte obscure devant vous. ",
+      "Vous continuez votre chemin dans la plaine. Vous sentez que quelque chose vous suit. Des bruits insupportables sonnent dans vos oreilles... Vous n’êtes pas tout seuls. Une porte obscure se tient devant vous.",
     image: "/assets/images/porte_sombre.jpg",
     buttons: [
       {
@@ -61,7 +61,7 @@ const chapters = {
   creature: {
     titre: "Quelle belle imagination vous avez !",
     description:
-      "Vous vous tournez puis vous préparez à s'élancer. Mais avant de faire cela, vous voyez un trou noir qui avance vers vous. Stupéfait, quand vous reouvrit les yeux pour comprendre ce que vous avez vu, vous vous retrouvez dans l'obscurité total.",
+      "Vous vous tournez pour vous élancer vers la cause des sons catastrophiques. Mais avant de faire cela, vous voyiez un trou noir qui avance vers vous. Stupéfait, quand vous réouvrîtes les yeux pour comprendre ce que vous avez vu, vous vous retrouvez dans l'obscurité total.",
     video: "/assets/video/creature.mp4",
     buttons: [
       {
@@ -73,7 +73,7 @@ const chapters = {
   porte: {
     titre: "Maison...vide",
     description:
-      "Vous entrez dans la porte noire. Étonné d'être dans une maison vide, vous marcher dans un corridor et vous voyez un `pièce de cuisine` ainsi qu'une tasse de thé placer sur le plancher.",
+      "Vous entrez dans la porte noire. Étonné d’être dans une maison vide, vous marchez dans un corridor et vous voyez une `pièce de cuisine` ainsi qu’une tasse de thé placer sur le plancher. ",
     image: "/assets/images/maison_vide.jpg",
     buttons: [
       {
@@ -89,7 +89,7 @@ const chapters = {
   the: {
     titre: "Une poison utile ",
     description:
-      "En buvant le thé, vous sentez un peu étourdi. Ceci cause une voix qui donne transmet un code. Celui-ci devra être important, prenez note.",
+      "En buvant le thé, vous vous sentez un peu étourdi et vous tombez dans un sommeil profond. Ceci cause une hallucination de composition de chiffres. Réveilliez, vous sentez toujours perdue, mais gagne de la confiance. Ces chiffres devront être importants, vous ne devez pas les oublier.",
     image: "/assets/images/the.jpg",
     buttons: [
       {
@@ -102,7 +102,7 @@ const chapters = {
   cuisine: {
     titre: "C'est vide ici !",
     description:
-      "La cuisine ressemble est remplie dans un silence très fort. Malheureusement, vous n'avez rien trouvez puis vous décida d'explorer un peu plus. ",
+      "Vous décidiez d’explorer la maison. La cuisine est remplie dans un silence très fort. Cela vous attire, mais votre intention est plus forte. Malheureusement, vous n’avez rien trouvé puis vous décidez d’explorer les autres chambres.",
     image: "/assets/images/cuisine_vide.jpg",
     buttons: [
       {
@@ -112,9 +112,9 @@ const chapters = {
     ],
   },
   chambre: {
-    titre: "Le dernier Arrêt",
+    titre: "Le dernier arrêt",
     description:
-      "Vous explorez le reste de la maison puis vous trouvez se que vous pensez être la sortie. ",
+      "Vous explorez le reste de la maison puis vous trouvez ce que vous pensez être la sortie.",
     image: "/assets/images/maison.jpg",
     buttons: [
       {
@@ -128,9 +128,9 @@ const chapters = {
     ],
   },
   sortie: {
-    titre: "Fin...?",
+    titre: "La finale?",
     description:
-      "Vous décidez de sortie mais ,quand vous ouvrez la porte, vous vous retrouvez vers le tout début de votre `rêve`.",
+      "Vous décidez de sortir, mais, quand vous ouvrez la porte, vous vous retrouvez vers le tout début de votre `rêve`. Une boucle, vous pensez. Ceci n’est pas votre fin…",
     image: "/assets/images/coincer.jpg",
     buttons: [
       {
@@ -140,16 +140,16 @@ const chapters = {
     ],
   },
   maison: {
-    titre: "Dernier? Qui a dit que c'était le dernier",
+    titre: "Dernier? Qui a dit que c'était le dernier?",
     description:
-      "Vous décidez de réexplorer la maison pour bien être sûr que vous n'avez pas oublié quelque chose. Cette action intelligente vous permet de resevoir une montre dont les aiguilles ne marche pas. Par chance, vous savez que cette montre est la clé de la sortie. Vous devez mettre la bonne heure.",
+      "Vous décidez de réexplorer la maison pour bien-être sûr que vous n'avez pas oublié quelque chose. Cette action intelligente vous permet de recevoir une montre dont les aiguilles ne marchent pas. Par coïncidence, vous savez que cette montre est la clé de la sortie. Vous devez juste mettre la bonne combinaison de chiffres.",
     image: "/assets/images/montre.webp",
     buttons: [{ titre: "➤ Mettre le code", destination: "Twist" }], // Ce chapitre n'a pas réellement une destination, car c'est un chapitre unique (twist) [Change manuellement dans la fonction]
   },
   fin: {
     titre: "Fou? J'étais fou une fois...",
     description:
-      "Vous ouvrez vos yeux, le plafond comme le plancher. Les murs sont identiques...Vous sentez une vague de folie revenir.",
+      "Vous ouvrez vos yeux, le plafond comme le plancher. Les murs sont identiques...Vous sentez une vague de folie revenir. Êtes-vous réellement sortie?",
     image: "assets/images/hopital.jpg",
     buttons: [
       {
@@ -159,9 +159,9 @@ const chapters = {
     ],
   },
   mauvaiscode: {
-    titre: "Don't take it personnal kid",
+    titre: "Ne prends pas personnellement",
     description:
-      "Vous n'avez pas mis le bon code. Donc quand vous ouvrez la porte de sortie, vous vous retrouvez vers le tout début de votre `rêve`.",
+      "Vous n'avez pas mis le bon code. Quand vous ouvrez la porte de sortie, vous vous retrouvez vers le début de votre `rêve`.",
     image: "/assets/images/coincer.jpg",
     buttons: [
       {
@@ -313,7 +313,7 @@ function goToChapter(key) {
       newBtn.textContent = chapitre.buttons[i].titre;
       newBtn.addEventListener("click", () => {
         goToChapter(chapitre.buttons[i].destination);
-        localStorage.setItem("chapitre", JSON.stringify(chapitre));
+        localStorage.setItem("chaptersObj", JSON.stringify(key));
         // Appelle au son pour les boutons créés
         const bruitFleche = new Audio("assets/video/arrow.mp3");
         // le son joue dans les boutons créés
@@ -324,9 +324,11 @@ function goToChapter(key) {
   }
 }
 
-//quand on ouvre la page -> montre directement la page d'accueil
-goToChapter("accueil");
-
-//doit prendre en compte la progression du joueur
-const progres = JSON.parse(localStorage.getItem("maison"));
-goToChapter(progres);
+if (localStorage.getItem("chaptersObj") != undefined) {
+  //doit prendre en compte la progression du joueur
+  const chapitreEnPause = JSON.parse(localStorage.getItem("chaptersObj"));
+  goToChapter(chapitreEnPause);
+} else {
+  //quand on ouvre la page -> montre directement la page d'accueil
+  goToChapter("accueil");
+}
