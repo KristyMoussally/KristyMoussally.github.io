@@ -33,6 +33,10 @@ body {
   justify-content: center;
   box-sizing: border-box;
   background-color: rgb(200, 200, 255);
+  background-blend-mode:multiply;
+  background-image: url(/assets/images/image_background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .contenant {
@@ -52,19 +56,17 @@ body {
     var(--dialog-blue-light)
   );
   width: 910px;
+  justify-content: baseline;
 }
 
-.btnplus button[aria-label="Help"] {
-  background-image: svg-load("./icon/help.svg");
-  background-repeat: no-repeat;
-  background-position: top 2px left 4px;
+#help{
+  height:25px
 }
 
-.btnplusbutton[aria-label="Close"] {
-  background-image: svg-load("./icon/close.svg");
-  background-repeat: no-repeat;
-  background-position: top 3px left 4px;
+#x{
+  height:25px
 }
+
 
 #jeu {
   justify-content: center;

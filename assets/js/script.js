@@ -192,8 +192,7 @@ btnHelpQuestion.addEventListener("click", () => {
     "assets/video/sound_effet_windows_notification.mp3"
   );
   notificationSonEffet.play();
-  let paraMsg = document.getElementById("msgQuestion");
-  paraMsg.textContent = "Voulez-vous recommencer le jeu?";
+
   setTimeout(() => {
     popupX.style.display = "block";
     btnRestart.style.display = "block";
@@ -211,6 +210,8 @@ btnDelete.addEventListener("click", () => {
   );
   problemeSonEffet.play();
   setTimeout(() => {
+    let paraMsg = document.getElementById("msgQuestion");
+    paraMsg.textContent = "Bonne essaie, mais tu restes coincé ici.";
     popupX.style.display = "block";
   }, 500);
   btnRestart.style.display = "none";
