@@ -1,8 +1,4 @@
-/* Changer pour une autre fonte plus cohérente
-@font-face {
-  font-family: "Wonderland";
-  src: "../fonts/Wonderland.otf" format("opentype");
-}*/
+
 
 /* À l'aide de 98.css => https://github.com/jdan/98.css/tree/main */
 
@@ -33,10 +29,11 @@ body {
   justify-content: center;
   box-sizing: border-box;
   background-color: rgb(200, 200, 255);
-  background-blend-mode:multiply;
+  background-blend-mode: multiply;
   background-image: url(/assets/images/image_background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  text-align: justify;
 }
 
 .contenant {
@@ -59,14 +56,13 @@ body {
   justify-content: baseline;
 }
 
-#help{
-  height:25px
+#help {
+  height: 25px;
 }
 
-#x{
-  height:25px
+#x {
+  height: 25px;
 }
-
 
 #jeu {
   justify-content: center;
@@ -200,4 +196,45 @@ button:hover {
 
 #btnRestart {
   display: block;
+}
+
+/* Ps5.2  (phone)*/
+
+@media screen and (max-width: 800px) {
+  .contenant {
+    font-size: 1.2em;
+    width: 305px;
+  }
+  #jeu {
+    width: 300px;
+    min-height: 100px;
+  }
+  .title-bar {
+    width: 300px;
+  }
+
+  #help {
+    height: 29px;
+    width: 20px;
+  }
+
+  #x {
+    height: 29px;
+    width: 20px;
+  }
+  .contenantpopup {
+    width: 300px;
+  }
+
+  .title-barpopup {
+    width: 300px;
+  }
+
+  .intpopup {
+    width: 300px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
 }
