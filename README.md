@@ -6,8 +6,8 @@ Genre : Surréal
 
 Inspiration : **Alice in Wonderland** et **Dreamcore**
 
-Pallette de couleurs : varie dépendament des images (les couleurs washed en lien avec les images choisis)
+Pallette de couleurs : https://coolors.co/ffffff-d7d8ce-0e8700-0800ff
 
-## Diagramme 
+## Diagramme
 
 ![image png du diagramme](/assets/drawio/shema.drawio%20copy.png)
