@@ -210,7 +210,6 @@ function goToChapter(key) {
   });
 
   if (localStorage.getItem("Muted") !== "true") {
-    musiqueAmbiance.play();
     musiqueAmbiance.loop = true;
     musiqueAmbiance.autoplay = true;
   }
